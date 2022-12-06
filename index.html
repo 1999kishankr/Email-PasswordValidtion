@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UserLogin</title>
+    <link rel="icon" type="image/x-icon" href="./logo.jpg">
+
+</head>
+
+<body>
+    <style>
+        .center {
+            width: 341px;
+            height: 450px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 150px;
+            right: 0;
+            margin: auto;
+        }
+
+        input:focus {
+            border: none;
+            outline: none;
+        }
+
+        #btnlogin {
+            position: absolute;
+            transition: .1s;
+            padding: 10px;
+            height: 20px;
+            width: 150px;
+            border-radius: 20px;
+            text-align: center;
+            background-color: red !important;
+        }
+
+        .login-wrap {
+            position: relative;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 34px -15px rgba(0, 0, 0, .24);
+            padding: 1.5rem !important;
+        }
+
+        .login-wrap h3 {
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        #Email,
+        #password {
+            width: 85%;
+            border-radius: 4px;
+        }
+
+        .image,
+        .btncenter {
+            display: flex;
+            justify-content: center;
+            margin-top: .5rem !important
+        }
+
+        .btn-danger {
+            color: #fff;
+            background-color: #dc3545;
+            border-color: #dc3545
+        }
+
+        .btn-danger:hover {
+            color: #fff;
+            background-color: #c82333;
+            border-color: #bd2130
+        }
+
+        .btn-danger.focus {
+            box-shadow: 0 0 0 .2rem rgba(225, 83, 97, .5)
+        }
+
+        .form-group {
+            position: relative;
+            padding-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .form-control {
+            height: 48px;
+            background: rgba(0, 0, 0, .05);
+            color: #000;
+            font-size: 16px;
+            box-shadow: none;
+            padding-left: 20px;
+            padding-right: 20px;
+            transition: all .2s ease-in-out
+        }
+
+        .text-center {
+            text-align: center !important
+        }
+    </style>
+    <div class="row">
+        <div class="center">
+            <div class="login-wrap ">
+                <div class="image ">
+                    <img src="./logo.jpg" style="height: 200px; border-radius: 54px;" />
+                </div>
+                <br />
+                <h3 class="text-center  ">Login</h3>
+                <div class="login-form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="Email" name="Email" placeholder="Email Id" />
+                        <small id="error" style="color: red;"></small>
+                    </div>
+                    <div class="form-group ">
+
+                        <input type="password" class="form-control" id="password" name="password"
+                            placeholder="password Number" />
+                        <small id="error2" style="color: red;"></small>
+                    </div>
+                    <div class="form-group ">
+                        Password Contain's 8 Character's having <span style="color: black;">[ (a-z) , (A-Z) ,(0-9) ,
+                            (!@#\$%\^&\*) ]</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group btncenter ">
+                <a href="#" class="btn btn-danger  " id="btnlogin" onclick="return myFunction();">Login</a>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Validation Script -->
+    <script>
+
+
+
+        window.addEventListener("load", function () {
+            document.getElementById("error").innerHTML = "Email ID Required";
+            document.getElementById("Email").style.border = `2px solid red`;
+            document.getElementById("error2").innerHTML = "Password Required";
+            document.getElementById("password").style.border = `2px solid red`;
+        });
+
+
+        password.onchange = PasswordValidation;
+        function PasswordValidation() {
+            var password = document.getElementById("password");
+            let passwordValue = password.value;
+            const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+            let result = passwordValue.match(pattern);
+            if (result) {
+                document.getElementById("error2").innerHTML = " ";
+                document.getElementById("password").style.border = `2px solid green`;
+            } else {
+                document.getElementById("error2").innerHTML = "Password Required";
+                document.getElementById("password").style.border = `2px solid red`;
+            }
+        }
+
+        var Email = document.getElementById("Email");
+        function animation() {
+            var EmailValue = document.getElementById("Email").value;
+            var effect = Math.ceil(Math.random() * 190);
+            function EmailValidation() {
+                var mailformat = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+                if (Email.value.match(mailformat)) {
+                    document.getElementById("error").innerHTML = "";
+                    document.getElementById("Email").style.border = `2px solid green`;
+                    button.style.left = `27%`;
+                }
+                else {
+                    button.style.left = `${effect}%`;
+                    document.getElementById("error").innerHTML = "Email ID Required";
+                    document.getElementById("Email").style.border = `2px solid red`;
+                }
+            }
+            if (EmailValue == '') {
+                button.style.left = `${effect}%`;
+                document.getElementById("error").innerHTML = "Email ID Required";
+                document.getElementById("Email").style.border = `2px solid red`;
+            } else if (EmailValue != '') {
+                EmailValidation();
+            }
+        }
+
+        Email.onchange = animation;
+
+        var button = document.getElementById("btnlogin");
+        button.addEventListener("mousemove", animation);
+
+    </script>
+
+</body>
+
+</html>
